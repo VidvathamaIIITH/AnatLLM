@@ -1,0 +1,14 @@
+# Secrets: never commit
+.env
+**/.env
+*Keys*.txt
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+.venv/
+
+# Assignment 2 local working dir
+Assignment2/work/
