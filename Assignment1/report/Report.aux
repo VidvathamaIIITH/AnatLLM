@@ -1,0 +1,84 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{vaswani2017attention}
+\citation{su2021roformer}
+\citation{ainslie2023gqa}
+\citation{zhang2019rmsnorm}
+\citation{pagnoni2024blt}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Task and Data}{1}{section.2}\protected@file@percent }
+\newlabel{sec:data}{{2}{1}{Task and Data}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{The corpus.}{1}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{What the cipher is.}{1}{section*.2}\protected@file@percent }
+\newlabel{eq:cipher}{{1}{1}{What the cipher is}{equation.1}{}}
+\citation{levenshtein1966}
+\citation{papineni2002bleu}
+\citation{lin2004rouge}
+\citation{xiong2020prelayernorm}
+\citation{ainslie2023gqa}
+\citation{shazeer2019mqa}
+\citation{vaswani2017attention}
+\@writefile{toc}{\contentsline {paragraph}{Segmentation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Direction and metrics.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Architecture}{2}{section.3}\protected@file@percent }
+\newlabel{sec:arch}{{3}{2}{Architecture}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Scaled dot-product attention}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Multi-head and grouped-query attention}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Positional encoding and normalisation}{2}{subsection.3.3}\protected@file@percent }
+\citation{ba2016layernorm}
+\citation{zhang2019rmsnorm}
+\citation{sennrich2016bpe}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Tokenisation and the Byte Latent Transformer}{3}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:blt-arch}{{3.4}{3}{Tokenisation and the Byte Latent Transformer}{subsection.3.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Bytes, not the text of bytes.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Entropy-based dynamic patching.}{3}{section*.6}\protected@file@percent }
+\newlabel{eq:patch}{{2}{3}{Entropy-based dynamic patching}{equation.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{The pipeline.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Causality.}{3}{section*.8}\protected@file@percent }
+\citation{press2017tying}
+\citation{loshchilov2019adamw}
+\citation{szegedy2016labelsmoothing}
+\citation{wandb2020}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces The five configurations. Each of C2--C5 changes exactly one component (in \textbf  {bold}) relative to the C1 baseline.}}{4}{table.caption.9}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:configs}{{1}{4}{The five configurations. Each of C2--C5 changes exactly one component (in \textbf {bold}) relative to the C1 baseline}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Test-set results (25 epochs each); best per column in \textbf  {bold}. Levenshtein is mean edit distance per segment, lower is better. Cost measured on one RTX 3050 Laptop GPU (4\,GB, bfloat16), each configuration in its own process; `Dec.'\ decodes 1{,}000 segments.}}{4}{table.caption.10}\protected@file@percent }
+\newlabel{tab:quality}{{2}{4}{Test-set results (25 epochs each); best per column in \textbf {bold}. Levenshtein is mean edit distance per segment, lower is better. Cost measured on one RTX 3050 Laptop GPU (4\,GB, bfloat16), each configuration in its own process; `Dec.'\ decodes 1{,}000 segments}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{4}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{4}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{4}{Results}{section.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Decoding quality across the five configurations.}}{5}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:quality}{{1}{5}{Decoding quality across the five configurations}{figure.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}C2: RoPE improves every quality metric for free}{5}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}C3: GQA trades accuracy for parameters and decode speed}{5}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}C4: RMSNorm is a strict improvement}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}The token-free trade-off (C5)}{6}{section.6}\protected@file@percent }
+\newlabel{sec:blt}{{6}{6}{The token-free trade-off (C5)}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Right bytes, wrong places.}{6}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why entropy patching is a poor fit \emph  {here}.}{6}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cost.}{6}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{6}{section.7}\protected@file@percent }
+\bibstyle{plainnat}
+\bibdata{refs}
+\bibcite{ainslie2023gqa}{{1}{2023}{{Ainslie et~al.}}{{Ainslie, Lee-Thorp, de~Jong, Zemlyanskiy, Lebr{\'o}n, and Sanghai}}}
+\bibcite{ba2016layernorm}{{2}{2016}{{Ba et~al.}}{{Ba, Kiros, and Hinton}}}
+\bibcite{wandb2020}{{3}{2020}{{Biewald}}{{}}}
+\bibcite{levenshtein1966}{{4}{1966}{{Levenshtein}}{{}}}
+\bibcite{lin2004rouge}{{5}{2004}{{Lin}}{{}}}
+\bibcite{loshchilov2019adamw}{{6}{2019}{{Loshchilov and Hutter}}{{}}}
+\bibcite{pagnoni2024blt}{{7}{2024}{{Pagnoni et~al.}}{{Pagnoni, Pasunuru, Rodriguez, Nguyen, Muller, Li, Zhou, Yu, Weston, Zettlemoyer, Ghosh, Lewis, Holtzman, and Iyer}}}
+\bibcite{papineni2002bleu}{{8}{2002}{{Papineni et~al.}}{{Papineni, Roukos, Ward, and Zhu}}}
+\bibcite{press2017tying}{{9}{2017}{{Press and Wolf}}{{}}}
+\bibcite{sennrich2016bpe}{{10}{2016}{{Sennrich et~al.}}{{Sennrich, Haddow, and Birch}}}
+\bibcite{shazeer2019mqa}{{11}{2019}{{Shazeer}}{{}}}
+\bibcite{su2021roformer}{{12}{2021}{{Su et~al.}}{{Su, Lu, Pan, Murtadha, Wen, and Liu}}}
+\bibcite{szegedy2016labelsmoothing}{{13}{2016}{{Szegedy et~al.}}{{Szegedy, Vanhoucke, Ioffe, Shlens, and Wojna}}}
+\bibcite{vaswani2017attention}{{14}{2017}{{Vaswani et~al.}}{{Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez, Kaiser, and Polosukhin}}}
+\@writefile{toc}{\contentsline {section}{Links}{7}{section*.15}\protected@file@percent }
+\bibcite{xiong2020prelayernorm}{{15}{2020}{{Xiong et~al.}}{{Xiong, Yang, He, Zheng, Zheng, Xing, Zhang, Lan, Wang, and Liu}}}
+\bibcite{zhang2019rmsnorm}{{16}{2019}{{Zhang and Sennrich}}{{}}}
+\gdef \@abspage@last{8}

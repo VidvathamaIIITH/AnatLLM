@@ -1,0 +1,28 @@
+# ---------------------------------------------------------------------------
+# IMPORTANT: install PyTorch FIRST, from the CUDA index, or you will silently
+# get the CPU-only wheel and training will be ~30x slower:
+#
+#   pip install torch==2.8.0 torchvision==0.23.0 torchaudio==2.8.0 \
+#       --index-url https://download.pytorch.org/whl/cu126
+#
+# Verify:  python -c "import torch; print(torch.cuda.is_available())"  -> True
+# ---------------------------------------------------------------------------
+
+torch>=2.0
+numpy>=1.23
+matplotlib>=3.6
+tqdm>=4.64
+
+# Experiment tracking / model hosting (required by the assignment)
+wandb>=0.16
+huggingface_hub>=0.20
+
+# Optional: Kaggle mirror of the checkpoints
+kagglehub>=0.3
+kaggle>=1.6
+
+# Optional: faster tabular loading (code falls back to stdlib csv/json)
+pandas>=1.5
+
+# Tests
+pytest>=7.0

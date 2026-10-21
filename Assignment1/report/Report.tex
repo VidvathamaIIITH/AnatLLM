@@ -1,0 +1,307 @@
+% =====================================================================
+%  ANLP Assignment 1 -- Transformers from Scratch, Architectural
+%  Variants, and Byte Latent Transformers
+%
+%  Formatting follows the brief: 12pt Times New Roman, 1-inch margins,
+%  max 6 pages excluding references and links.
+%
+%  Compile on Overleaf with pdfLaTeX:
+%     Report.tex -> (bibtex) -> Report.tex -> Report.tex
+% =====================================================================
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}                  % must precede newtxmath
+\usepackage{newtxtext,newtxmath}      % Times New Roman text + matching math
+                                      % (newtxmath supplies the AMS symbols, so
+                                      %  amssymb must NOT be loaded -- it clashes
+                                      %  on \Bbbk)
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[hidelinks,breaklinks]{hyperref}
+\usepackage{url}
+\usepackage{microtype}
+
+\graphicspath{{figures/}}
+
+% Tighter float spacing so the six-page budget is achievable
+\setlength{\textfloatsep}{7pt plus 2pt minus 2pt}
+\setlength{\intextsep}{7pt plus 2pt minus 2pt}
+\setlength{\abovecaptionskip}{3pt}
+\setlength{\belowcaptionskip}{0pt}
+
+\newcommand{\cfg}[1]{\textbf{#1}}
+
+% Numbers generated from outputs/all_results.json by:
+%     python report/make_tables.py
+% results_macros.tex holds only \newcommand definitions (preamble-safe);
+% the table environments themselves are \input inside Section 5.
+\input{results_macros}
+
+\title{\vspace{-2.5em}\textbf{Transformers from Scratch, Architectural Variants,\\
+and Byte Latent Transformers:\\
+A Controlled Ablation on Binary Cipher Decryption}\vspace{-0.5em}}
+
+\author{%
+Vidvathama R\\
+\small Roll Number: \texttt{2024122002}\\
+\small International Institute of Information Technology, Hyderabad\\
+\small Advanced Natural Language Processing, Assignment 1
+}
+\date{\vspace{-1em}\small\today}
+
+\begin{document}
+\maketitle
+\vspace{-2em}
+
+% =====================================================================
+\begin{abstract}
+\noindent
+I implement a complete encoder--decoder Transformer from elementary PyTorch
+operations (no \texttt{nn.Transformer}, no \texttt{nn.MultiheadAttention}, no
+\texttt{F.scaled\_dot\_product\_attention}) and run a controlled five-way
+ablation on decrypting XOR-enciphered binary sequences into plaintext English.
+From a baseline (\cfg{C1}), each variant changes \emph{exactly one} component:
+RoPE, grouped-query attention, RMSNorm, and a token-free Byte Latent Transformer
+with entropy-based dynamic patching. All five share depth, width, learning rate,
+batch size, schedule and seed, so every difference is attributable to the
+component that moved. I report bit and sequence accuracy, Levenshtein distance
+and BLEU/ROUGE under greedy decoding, alongside throughput and true per-process
+peak GPU memory.
+\end{abstract}
+
+% =====================================================================
+\section{Introduction}
+\label{sec:intro}
+
+The Transformer \citep{vaswani2017attention} is usually presented as a monolith,
+but it is an assembly of independently replaceable parts: a way of injecting
+position, an attention pattern, a normalisation rule, and a decision about what
+counts as a token. Each has a well-known modern replacement: RoPE
+\citep{su2021roformer}, grouped-query attention \citep{ainslie2023gqa}, RMSNorm
+\citep{zhang2019rmsnorm}, byte-level processing \citep{pagnoni2024blt}. Each of
+them is usually adopted wholesale, bundled with a dozen other changes, which makes it
+hard to say what any one of them actually bought. This report isolates them: I
+build every component from scratch and vary one at a time against a fixed
+baseline, holding all other hyperparameters constant. The contributions are
+from-scratch implementations of each module, verified by unit tests against
+reference formulations (Section~\ref{sec:arch}); a controlled five-way ablation
+(Section~\ref{sec:setup}); and an analysis of the token-free trade-off, covering
+what the BLT buys and what it costs (Section~\ref{sec:blt}).
+
+% =====================================================================
+\section{Task and Data}
+\label{sec:data}
+
+\paragraph{The corpus.} 5{,}000 strictly line-aligned pairs:
+\texttt{brown\_cipher.txt} holds strings over $\{0,1\}$ and
+\texttt{brown\_plain.txt} the corresponding English sentences (53-character
+alphabet: letters and space). Every plaintext character corresponds to exactly
+eight cipher bits, so $|c_k| = 8\,|p_k|$ for all 5{,}000 lines. Plaintext lines
+average 598 characters (max 2{,}670), so cipher lines average 4{,}781 bits
+(max 21{,}360).
+
+\paragraph{What the cipher is.} Reading the cipher eight bits at a time as a
+byte and XOR-ing against the aligned plaintext character exposes a constant
+repeating stream: the eight bytes of the ASCII string \texttt{ANLP2026},
+restarting at the beginning of every line. The mapping is therefore
+\begin{equation}
+c_k[8i:8i{+}8] \;=\; \mathrm{bits}_8\!\big(\mathrm{ord}(p_k[i]) \oplus K[i \bmod 8]\big),
+\label{eq:cipher}
+\end{equation}
+with $K = \texttt{ANLP2026}$. Two consequences matter. First, the task is
+\emph{exactly} learnable, with no irreducible noise, so any shortfall is
+attributable to optimisation or capacity, not the data. Second, and more
+important for the ablation, the correct output at position $i$ depends on
+$i \bmod 8$: the task is intrinsically \textbf{position-dependent with period
+eight}, which is what makes the C1-vs-C2 positional comparison substantive rather
+than decorative here. \emph{The key is never supplied to any model}; it is
+recovered only to characterise the task.
+
+\paragraph{Segmentation.} A 4{,}781-token encoder sequence is infeasible under
+$O(T^2)$ attention on a 4\,GB GPU, so I cut each document into aligned segments
+of 32 plaintext characters (256 cipher bits). Two details keep this honest:
+segmentation happens \emph{after} the 80/10/10 document-level split, so no
+document contributes to two splits; and 32 is a multiple of the key period 8, so
+every segment begins at key phase 0. This yields \textbf{76{,}823 / 9{,}461 /
+9{,}544} train/val/test segments.
+
+\paragraph{Direction and metrics.} Models map cipher to plaintext.
+Bit accuracy is computed on the 8-bit expansion of predicted and reference
+\emph{characters}; sequence accuracy requires an exact match of the whole
+32-character segment; Levenshtein \citep{levenshtein1966} is the mean edit
+distance; BLEU \citep{papineni2002bleu} and ROUGE \citep{lin2004rouge} are
+word-level. All generation uses \textbf{greedy decoding}, as the brief requires.
+
+% =====================================================================
+\section{Architecture}
+\label{sec:arch}
+
+Everything below uses elementary tensor operations. The stack is pre-norm
+\citep{xiong2020prelayernorm}.
+
+\subsection{Scaled dot-product attention}
+The core operation is implemented directly as
+$\mathrm{softmax}(QK^{\top}/\sqrt{d_k})V$. Masks are boolean, broadcast to
+$[B,H,T_q,T_k]$. Forbidden logits are filled with \texttt{finfo(dtype).min}
+rather than $-\infty$: a fully-masked row, which genuinely occurs for padded
+\emph{query} positions, then yields a uniform distribution instead of
+\texttt{NaN}, and those rows are discarded by the loss' \texttt{ignore\_index}.
+Using $-\infty$ is a common, hard-to-find source of \texttt{NaN} gradients.
+
+\subsection{Multi-head and grouped-query attention}
+MHA projects to $H$ query, key and value heads of width $d_k = d_{\text{model}}/H$.
+GQA \citep{ainslie2023gqa} keeps $H$ query heads but only $H_{kv} < H$ key/value
+heads, each shared by $H/H_{kv}$ query heads; $H_{kv}=H$ recovers MHA exactly and
+$H_{kv}=1$ is multi-query attention \citep{shazeer2019mqa}. Sharing uses
+\texttt{expand}~+~\texttt{reshape}, so nothing is materialised until the matmul
+consumes it. GQA shrinks the K/V projections and the decoding KV-cache from
+$2BHTd_k$ to $2BH_{kv}Td_k$. I use $H=8$, $H_{kv}=2$; a unit test asserts
+$H_{kv}=H$ reproduces MHA numerically.
+
+\subsection{Positional encoding and normalisation}
+\textbf{Sinusoidal absolute} encodings (C1, C3--C5) are the fixed table of
+\citet{vaswani2017attention}, added to the embeddings as a non-trainable buffer.
+\textbf{RoPE} (C2) instead rotates each 2-dimensional slice of every query and key
+by an angle proportional to its absolute position, so the logit depends only on
+the relative offset: $\langle R_m q, R_n k\rangle = g(q,k,m-n)$. Because RoPE acts
+inside attention, C2 adds \emph{no} absolute encoding; otherwise the change would
+not be a single-component swap. Two implementation points matter: RoPE is applied
+to the new slice \emph{before} the KV-cache is concatenated, since cached keys are
+already rotated; and cross-attention is left un-rotated, query and key living in
+different sequences where relative distance is meaningless.
+
+\textbf{LayerNorm} \citep{ba2016layernorm} re-centres and re-scales;
+\textbf{RMSNorm} \citep{zhang2019rmsnorm} drops the mean subtraction, keeping
+$x / \sqrt{\tfrac{1}{d}\sum_i x_i^2 + \epsilon} \odot \gamma$, which is one
+fewer reduction and no bias vector. Both accumulate statistics in float32 even under
+bfloat16 autocast, since $x^2$ summed over a long feature axis underflows badly in
+half precision.
+
+\subsection{Tokenisation and the Byte Latent Transformer}
+\label{sec:blt-arch}
+C1--C4 use a byte-level BPE \citep{sennrich2016bpe} trained from scratch,
+separately per side, with a 4{,}096 vocabulary. Because a cipher string is one
+enormous whitespace-free ``word'', pre-tokenisation is length-capped at 32
+characters rather than split on whitespace. Learned source pieces average 16.8
+characters across 29 distinct lengths: genuine variable-length subwords, not a
+degenerate fixed 8-bit code; a unit test asserts this.
+
+C5 removes the vocabulary entirely: 256 byte values plus three specials, with a
+standard learned 256-entry byte embedding.
+
+\paragraph{Bytes, not the text of bytes.} The ciphertext is a \emph{binary
+sequence} stored as ASCII \texttt{0}/\texttt{1} characters, so every eight bits
+are packed MSB-first into one byte in $[0,255]$ before the model sees them.
+Treating each character as its own byte would feed the model the \emph{text
+encoding} of the data and inflate the sequence eightfold: a 256-character segment
+is 32 bytes, not 256. The plaintext side is ordinary text, so its UTF-8 bytes are
+used directly.
+
+\paragraph{Entropy-based dynamic patching.} Patches are \emph{not} fixed width.
+Following BLT, a new patch opens wherever the next byte is hard to predict, so
+predictable runs are grouped and surprising positions get short patches. The
+next-byte entropy is estimated by a lightweight \textbf{order-2 byte n-gram
+(Markov) model} with add-$\alpha$ smoothing and stupid backoff, fit by a single
+counting pass over the training split only. No separate neural language model is
+trained. A new patch opens at position $t$ when
+\begin{equation}
+H\!\left(x_t \mid x_{t-2}, x_{t-1}\right) > \theta .
+\label{eq:patch}
+\end{equation}
+Because the estimator is an n-gram, this entropy depends only on the context, so
+it precomputes into three lookup tables ($H_0$, $H_1[256]$, $H_2[256^2]$)
+registered as buffers: training and incremental generation therefore run
+identical boundary logic. A raw threshold does not transfer between data of
+different character, so $\theta$ is calibrated as the quantile of training
+entropies giving a target mean patch length. Here that yields 10.3 patches per
+34-byte sequence, mean length 3.3 bytes, across 32 distinct lengths: genuinely
+variable, not fixed width in disguise.
+
+\paragraph{The pipeline.} Packed bytes enter a small \textbf{local encoder} with
+windowed attention; a \textbf{patch pooler} attention-pools the members of each
+entropy-defined patch; the \textbf{global transformer}, byte-for-byte the same
+stack C1 uses, runs over the shorter patch sequence; and a \textbf{local decoder}
+with windowed causal self-attention and cross-attention to the patch states emits
+next-byte logits.
+
+\paragraph{Causality.} A learned \textbf{start patch} is prepended to the target
+patch sequence, so the global decoder consumes $[\text{start}, p_1 \ldots p_M]$
+and emits $[g_0 \ldots g_M]$. The target local encoder is causal; $p_k$ pools
+only its own members; the global decoder is causal over patches. A byte in patch
+$j$ may attend $g_0 \ldots g_j$, and $g_j$ pooled only patches $0 \ldots j-1$,
+that is bytes strictly before patch $j$ begins. Dynamic patching preserves this
+because the boundary at $t$ is a function of $x_{t-2}, x_{t-1}$ by
+Eq.~\ref{eq:patch} and never of $x_t$, so a byte's patch is known \emph{before}
+it is generated. The start patch is what makes the first patch work: having
+cross-attended to the encoder memory, its bytes get full source information with
+zero target leakage; without it their cross-attention rows would be fully masked,
+and a fully-masked softmax row is uniform, silently averaging over future patches
+rather than failing loudly. Unit tests verify all of this numerically.
+
+% =====================================================================
+\section{Experimental Setup}
+\label{sec:setup}
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{llll}
+\toprule
+\textbf{Cfg} & \textbf{Positional} & \textbf{Attention} & \textbf{Norm / Token.} \\
+\midrule
+C1 & Sinusoidal      & MHA           & LayerNorm / BPE \\
+C2 & \textbf{RoPE}   & MHA           & LayerNorm / BPE \\
+C3 & Sinusoidal      & \textbf{GQA}  & LayerNorm / BPE \\
+C4 & Sinusoidal      & MHA           & \textbf{RMSNorm} / BPE \\
+C5 & Sinusoidal      & MHA           & LayerNorm / \textbf{BLT} \\
+\bottomrule
+\end{tabular}
+\caption{The five configurations. Each of C2--C5 changes exactly one component
+(in \textbf{bold}) relative to the C1 baseline.}
+\label{tab:configs}
+\end{table}
+
+All configurations share: $d_{\text{model}}=256$, 3 encoder + 3 decoder layers,
+8 heads, $d_{\text{ff}}=1024$, dropout 0.1, tied embeddings
+\citep{press2017tying}, AdamW \citep{loshchilov2019adamw} ($\beta = 0.9/0.98$,
+weight decay 0.01), peak LR $3\times10^{-4}$ with 500 warmup steps and cosine
+decay to $10^{-5}$, label smoothing 0.1 \citep{szegedy2016labelsmoothing},
+gradient clipping 1.0, batch size 64, 25 epochs, seed 42. C3 uses $H_{kv}=2$; C5
+uses local width 128, one local encoder and two local decoder layers, window 64,
+and a threshold calibrated to a mean patch length of 4 bytes, capped at 12.
+
+Training ran on a single \textbf{NVIDIA RTX 3050 Laptop GPU (4\,GB)} under
+bfloat16 autocast, logged to Weights \& Biases \citep{wandb2020}. Crucially,
+\textbf{each configuration was trained in its own process}:
+\texttt{torch.cuda.max\_memory\_allocated} is a per-process high-water mark, so
+running all five together would let C1's peak leak into C5's number. Epoch time
+is the \emph{median} over epochs, which is robust to host interruptions (one C4
+epoch absorbed an OS suspend and recorded 24{,}890\,s against a true
+${\approx}127$\,s).
+
+% =====================================================================
+\section{Results}
+\label{sec:results}
+
+\input{results_tables}
+\input{results_body}
+
+% =====================================================================
+\section*{Links}
+\addcontentsline{toc}{section}{Links}
+
+\begin{itemize}\itemsep1pt
+\item \textbf{Weights \& Biases project (all five runs):}\\
+      \url{https://wandb.ai/vidvathama-babu-iiit-hyderabad/anlp-a1-blt-ablation}
+\item \textbf{Hugging Face checkpoints (C1--C5):}\\
+      \url{https://huggingface.co/Viv0605101/anlp-a1-transformer-blt-ablation}
+\end{itemize}
+
+% =====================================================================
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\end{document}

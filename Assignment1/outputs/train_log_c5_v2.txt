@@ -1,0 +1,151 @@
+C:\Users\vidva\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\python.exe -m src.run_all --out-dir outputs --src-file data/brown_cipher.txt --tgt-file data/brown_plain.txt --chunk-chars 32 --vocab-size 4096 --d-model 256 --n-layers 3 --n-heads 8 --n-kv-heads 2 --d-ff 1024 --dropout 0.1 --epochs 25 --batch-size 64 --eval-batch-size 64 --lr 3e-4 --min-lr 1e-5 --warmup-steps 500 --scheduler cosine --label-smoothing 0.1 --grad-clip 1.0 --patience 5 --max-eval-samples 1000 --blt-patch-size 4 --blt-target-patch 4.0 --blt-max-patch 12 --blt-entropy-alpha 0.5 --blt-d-local 128 --blt-local-enc-layers 1 --blt-local-dec-layers 2 --blt-local-heads 4 --blt-window 64 --seed 42 --amp auto --device auto --wandb online --wandb-project anlp-a1-blt-ablation --configs C5
+
+##############################################################################
+### C5: C:\Users\vidva\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\python.exe -m src.train --config C5 --out-dir outputs --src-file data/brown_cipher.txt --tgt-file data/brown_plain.txt --chunk-chars 32 --vocab-size 4096 --d-model 256 --n-layers 3 --n-heads 8 --n-kv-heads 2 --d-ff 1024 --dropout 0.1 --epochs 25 --batch-size 64 --eval-batch-size 64 --lr 3e-4 --min-lr 1e-5 --warmup-steps 500 --scheduler cosine --label-smoothing 0.1 --grad-clip 1.0 --patience 5 --max-eval-samples 1000 --blt-patch-size 4 --blt-target-patch 4.0 --blt-max-patch 12 --blt-entropy-alpha 0.5 --blt-d-local 128 --blt-local-enc-layers 1 --blt-local-dec-layers 2 --blt-local-heads 4 --blt-window 64 --seed 42 --amp auto --device auto --wandb online --wandb-project anlp-a1-blt-ablation
+##############################################################################
+==============================================================================
+Configuration C5  (tokenization -> BLT (token-free))
+  positional=sinusoidal  attention=mha  norm=layernorm  tokenization=byte
+  device=cuda  amp=torch.bfloat16  torch=2.8.0+cu126
+==============================================================================
+  [data] parallel: brown_cipher.txt + brown_plain.txt -> 5000 aligned lines
+  [data] single corpus -> auto split 80/10/10 (seed=42)
+  [data] documents: train=4000 val=500 test=500 | source='brown_cipher.txt' target='brown_plain.txt'
+  [data] train chunked 3939 pairs at 32 target chars -> 76823 segments
+  [data] val chunked 495 pairs at 32 target chars -> 9461 segments
+  [data] test chunked 493 pairs at 32 target chars -> 9544 segments
+  [data] examples:  train=76823 val=9461 test=9544 | source='brown_cipher.txt' target='brown_plain.txt'
+  [data] example source[:80]: '00010110001001100010010100111100010101110001000001110100010111110010111100101001'
+  [data] example target[:80]: 'While Fingal was discharging her'
+  [tok] token-free byte tokenizer | vocab=259 | source=bit-packed (8 bits -> 1 byte), target=utf-8
+  [tok] source: 256 bits -> 32 bytes
+  [len] p99 source=34 target=34 (max seen: 34/34)
+  [data] encoded train/val/test = 76823/9461/9544 | truncated src=0 tgt=0
+  [blt] fitting order-2 byte n-gram entropy models (target mean patch = 4.0 bytes) ...
+    [entropy] fit on 76823 seqs / 2,395,070 bytes | H0=6.040 bits | order-2 contexts used 4,234/6,733
+    [entropy] fit on 76823 seqs / 2,395,070 bytes | H0=4.335 bits | order-2 contexts used 1,044/1,573
+    [entropy] threshold=4.9360 bits (q=0.750) -> 25.0% of positions open a patch (~4.00 bytes/patch)
+    [entropy] threshold=3.9799 bits (q=0.750) -> 25.0% of positions open a patch (~4.00 bytes/patch)
+  [model] BLTSeq2Seq | trainable params = 6.71M
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from WANDB_API_KEY.
+wandb: Currently logged in as: vidvathama-babu (vidvathama-babu-iiit-hyderabad) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: WARNING Using a boolean value for 'reinit' is deprecated. Use 'return_previous' or 'finish_previous' instead.
+wandb: setting up run c4uzpisy
+wandb: Tracking run with wandb version 0.29.0
+wandb: Run data is saved locally in C:\Users\vidva\OneDrive - International Institute of Information Technology\Desktop\Course_Work_4-1\ANLP\Assignments\Assignment1\wandb\run-20260902_124559-c4uzpisy
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run C5-tokenization
+wandb:  View project at https://wandb.ai/vidvathama-babu-iiit-hyderabad/anlp-a1-blt-ablation
+wandb:  View run at https://wandb.ai/vidvathama-babu-iiit-hyderabad/anlp-a1-blt-ablation/runs/c4uzpisy
+[wandb] logging online: https://wandb.ai/vidvathama-babu-iiit-hyderabad/anlp-a1-blt-ablation/runs/c4uzpisy
+  epoch   1/25 | train 2.9101 | val 1.4795 (ppl 4.39, tok-acc 56.21%) | 280.7s
+  epoch   2/25 | train 2.0661 | val 0.8875 (ppl 2.43, tok-acc 73.56%) | 276.0s
+  epoch   3/25 | train 1.7196 | val 0.5765 (ppl 1.78, tok-acc 83.34%) | 274.3s
+  epoch   4/25 | train 1.5244 | val 0.4292 (ppl 1.54, tok-acc 87.98%) | 283.9s
+  epoch   5/25 | train 1.4051 | val 0.3501 (ppl 1.42, tok-acc 90.50%) | 283.1s
+  epoch   6/25 | train 1.3245 | val 0.2880 (ppl 1.33, tok-acc 92.65%) | 275.7s
+  epoch   7/25 | train 1.2634 | val 0.2439 (ppl 1.28, tok-acc 94.12%) | 276.1s
+  epoch   8/25 | train 1.2164 | val 0.2111 (ppl 1.24, tok-acc 95.31%) | 274.4s
+  epoch   9/25 | train 1.1774 | val 0.1872 (ppl 1.21, tok-acc 95.96%) | 279.2s
+  epoch  10/25 | train 1.1466 | val 0.1700 (ppl 1.19, tok-acc 96.53%) | 275.2s
+  epoch  11/25 | train 1.1218 | val 0.1576 (ppl 1.17, tok-acc 96.91%) | 275.5s
+  epoch  12/25 | train 1.1003 | val 0.1458 (ppl 1.16, tok-acc 97.31%) | 262.8s
+  epoch  13/25 | train 1.0822 | val 0.1371 (ppl 1.15, tok-acc 97.55%) | 262.1s
+  epoch  14/25 | train 1.0668 | val 0.1294 (ppl 1.14, tok-acc 97.77%) | 264.0s
+  epoch  15/25 | train 1.0541 | val 0.1218 (ppl 1.13, tok-acc 98.01%) | 267.3s
+  epoch  16/25 | train 1.0439 | val 0.1165 (ppl 1.12, tok-acc 98.15%) | 270.1s
+  epoch  17/25 | train 1.0346 | val 0.1134 (ppl 1.12, tok-acc 98.25%) | 277.6s
+  epoch  18/25 | train 1.0266 | val 0.1100 (ppl 1.12, tok-acc 98.37%) | 278.6s
+  epoch  19/25 | train 1.0208 | val 0.1068 (ppl 1.11, tok-acc 98.45%) | 276.0s
+  epoch  20/25 | train 1.0151 | val 0.1052 (ppl 1.11, tok-acc 98.49%) | 278.5s
+  epoch  21/25 | train 1.0114 | val 0.1032 (ppl 1.11, tok-acc 98.56%) | 278.3s
+  epoch  22/25 | train 1.0082 | val 0.1025 (ppl 1.11, tok-acc 98.59%) | 263.5s
+  epoch  23/25 | train 1.0057 | val 0.1014 (ppl 1.11, tok-acc 98.60%) | 268.6s
+  epoch  24/25 | train 1.0039 | val 0.1008 (ppl 1.11, tok-acc 98.62%) | 269.9s
+  epoch  25/25 | train 1.0032 | val 0.1006 (ppl 1.11, tok-acc 98.62%) | 278.6s
+  [model] restored best checkpoint (epoch 25, val loss 0.1006)
+  [eval] teacher-forced test loss ...
+  [eval] greedy decoding ...
+    [gen] batch 1/150 (64 samples)
+    [gen] batch 11/150 (704 samples)
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading config.yaml
+wandb: 
+wandb: Run summary:
+wandb:                   epoch 25
+wandb:    perf/peak_gpu_mem_mb 523.09375
+wandb:      perf/sec_per_epoch 278.57527
+wandb:     perf/tokens_per_sec 8873.33975
+wandb:       test/_binary_mode 0
+wandb: test/_word_level_ngrams 1
+wandb:         test/best_epoch 25
+wandb:      test/best_val_loss 0.10062
+wandb:       test/bit_accuracy 97.02452
+wandb:               test/bleu 82.79956
+wandb:                     +33 ...
+wandb: 
+wandb:  View run C5-tokenization at: https://wandb.ai/vidvathama-babu-iiit-hyderabad/anlp-a1-blt-ablation/runs/c4uzpisy
+wandb:  View project at: https://wandb.ai/vidvathama-babu-iiit-hyderabad/anlp-a1-blt-ablation
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: .\wandb\run-20260902_124559-c4uzpisy\logs
+
+------------------------------------------------------------------------------
+RESULTS - C5 (tokenization -> BLT (token-free))
+              bit_accuracy: 97.0245
+         sequence_accuracy: 70.0000
+               levenshtein: 1.0000
+    levenshtein_normalized: 0.0316
+                      bleu: 82.7996
+                    rouge1: 91.2593
+                    rouge2: 83.2751
+                    rougeL: 91.2343
+                 test_loss: 0.0987
+                  test_ppl: 1.1037
+       test_token_accuracy: 98.7065
+           params_millions: 6.7105
+             sec_per_epoch: 275.6951
+           peak_gpu_mem_mb: 523.0938
+        generation_seconds: 27.5646
+  artifacts -> outputs\C5
+------------------------------------------------------------------------------
+
+==============================================================================
+# Ablation summary (auto-generated by `src/run_all.py`)
+
+## Configuration matrix
+
+| Config | Changed from base | Positional | Attention | Norm | Tokenization |
+|---|---|---|---|---|---|
+| C5 | tokenization -> BLT (token-free) | sinusoidal | mha | layernorm | byte |
+
+## Quality (greedy decoding on the test split)
+
+| Config | Bit Acc (%) | Seq Acc (%) | Levenshtein | BLEU | ROUGE-L |
+|---|---|---|---|---|---|
+| C5 | 97.0245 | 70.0000 | 1.0000 | 82.7996 | 91.2343 |
+
+_BLEU/ROUGE are defined by the brief for tokenised models (C1-C4); the C5 values are byte-level and included for reference only._
+
+
+## Teacher-forced test loss
+
+| Config | Test loss | Test PPL | Token Acc (%) | Best val loss | Best epoch |
+|---|---|---|---|---|---|
+| C5 | 0.0987 | 1.1037 | 98.7065 | 0.1006 | 25 |
+
+## Computational cost
+
+| Config | Params (M) | s / epoch | train tok/s | Peak GPU MB | Greedy decode (s) |
+|---|---|---|---|---|---|
+| C5 | 6.7105 | 275.6951 | 8966.0398 | 523.0938 | 27.5646 |
+
+## WandB runs
+
+- **C5**: https://wandb.ai/vidvathama-babu-iiit-hyderabad/anlp-a1-blt-ablation/runs/c4uzpisy
+==============================================================================
+
+Wrote outputs\report_tables.md
+Wrote outputs\all_results.json
+Wrote outputs\ablation_quality.png
+Wrote outputs\ablation_efficiency.png

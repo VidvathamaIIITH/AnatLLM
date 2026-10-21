@@ -1,0 +1,8 @@
+.env
+__pycache__/
+*.pyc
+wandb/
+outputs*/
+*.zip
+!assignment1.zip
+.ipynb_checkpoints/

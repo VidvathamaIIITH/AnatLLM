@@ -1,0 +1,169 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex.fmt)
+ restricted \write18 enabled.
+entering extended mode
+(Report.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/base\size12.clo))
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty))
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+For additional information on amsmath, use the `?' option.
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty))
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty))
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/newtx\newtxtext.sty
+`newtxtext' v1.744, 2024/04/01 Text macros taking advantage of TeXGyre Termes a
+nd its extensions (msharpe)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/xpatch\xpatch.sty
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
+tex.def))
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xpars
+e.sty)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty))
+ (C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg)
+
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
+)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx)
+) (C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/xkeyval\xkeyval.sty
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkeyval.tex
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkvutils.tex)
+)) (C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/base\textcomp.sty)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/xstring\xstring.sty
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/generic/xstring\xstring.tex))
+ (C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/carlisle\scalefnt.sty)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/generic/binhex\binhex.tex)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/fontaxes\fontaxes.sty
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/figureversions\figureve
+rsions.sty)))
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/newtx\newtxmath.sty
+`newtxmath' v1.754, 2024/09/22 Math macros based originally on txfonts (msharpe
+)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/oberdiek\centernot.sty)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/generic/binhex\binhex.tex)
+amsthm NOT loaded
+) (C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty
+) (C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.c
+fg)))
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/caption\subcaption.sty
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty)))
+ (C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/multirow\multirow.sty)
+ (C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/natbib\natbib.sty)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
+)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefine
+keys.sty)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.s
+ty
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds
+.sty
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.s
+ty)))
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\gettit
+lestring.sty
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
+)))
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc.s
+ty) (C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
+) (C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
+) (C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcalc
+.sty)))
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfil
+echeck.sty
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniquec
+ounter.sty)))
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.sty
+
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype-pdf
+tex.def)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.cfg
+)) (results_macros.tex)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/newtx\ot1ntxtlf.fd)
+(Report.aux)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/newtx\omlntxmi.fd)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxexa.fd)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/newtx\lmsntxsy.fd)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/newtx\lmxntxexx.fd)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
+ii
+[Loading MPS to PDF converter (version 2006.09.02).]
+)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
+ase.sty
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.c
+fg)) (Report.out) (Report.out)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-ptm.cfg)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/newtx\ot1minntx.fd)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxmia.fd)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxsym.fd)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxsyc.fd)
+(C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/newtx\ot1ntxtt.fd)
+Overfull \hbox (28.77855pt too wide) in paragraph at lines 61--75
+\OT1/ntxtlf/m/n/10.95 (-20) no \OT1/ntxtt/m/n/10.95 nn.Transformer\OT1/ntxtlf/m
+/n/10.95 (-20) , no \OT1/ntxtt/m/n/10.95 nn.MultiheadAttention\OT1/ntxtlf/m/n/1
+0.95 (-20) , no \OT1/ntxtt/m/n/10.95 F.scaled[]dot[]product[]attention\OT1/ntxt
+lf/m/n/10.95 (-20) ---
+
+LaTeX Warning: Reference `sec:blt' on page 1 undefined on input line 95.
+
+[1{C:/Users/vidva/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/vi
+dva/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}]
+Overfull \hbox (11.1116pt too wide) in paragraph at lines 154--161
+\OT1/ntxtlf/m/n/12 (-20) Masks are boolean, broad-cast to $\LMS/ntxsy/m/n/12 »\
+OML/ntxmi/m/it/12 B; H; T[]; T[]\LMS/ntxsy/m/n/12 ¼$\OT1/ntxtlf/m/n/12 (-20) . 
+For-bid-den log-its are filled with \OT1/ntxtt/m/n/12 finfo(dtype).min
+[2] [3]
+Overfull \hbox (30.147pt too wide) in paragraph at lines 260--266
+\OT1/ntxtlf/m/n/12 (-20) Cru-cially, \OT1/ntxtlf/b/n/12 (-20) each con-fig-u-ra
+-tion was trained in its own pro-cess\OT1/ntxtlf/m/n/12 (-20) : \OT1/ntxtt/m/n/
+12 torch.cuda.max[]memory[]allocated
+(results_tables.tex) (results_body.tex [4] [5 <./figures/ablation_quality.png>]
+) (C:\Users\vidva\AppData\Local\Programs\MiKTeX\tex/latex/newtx\ts1ntxtlf.fd)
+Overfull \hbox (7.80597pt too wide) in paragraph at lines 279--281
+[]$\OT1/ntxtt/m/n/12 https : / / wandb . ai / vidvathama-[]babu-[]iiit-[]hydera
+bad / anlp-[]a1-[]blt-[]ablation$[] 
+(Report.bbl [6{C:/Users/vidva/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/tex
+-gyre/q-ts1.enc}]) [7] (Report.aux)
+
+LaTeX Warning: There were undefined references.
+
+ )
+(see the transcript file for additional information)<C:/Users/vidva/AppData/Loc
+al/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI.pfb><C:/Users/vidva/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/tex-gyre/qtmr.pfb><C:/Users/vidva/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/newtx/txexs.pfb><C:/Users/vidva/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txmiaX.pfb><C:/Users/vidv
+a/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txsys.pfb><C:/Users/vi
+dva/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/txtt.pfb><C:/Users
+/vidva/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmb.pfb><C:/User
+s/vidva/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmr.pfb><C:/Use
+rs/vidva/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmri.pfb>
+Output written on Report.pdf (7 pages, 290320 bytes).
+Transcript written on Report.log.
+pdflatex: major issue: So far, you have not checked for MiKTeX updates.

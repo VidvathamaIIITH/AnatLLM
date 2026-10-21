@@ -1,0 +1,31 @@
+[wandb] logging online: https://wandb.ai/vidvathama-babu-iiit-hyderabad/anlp-a1-blt-ablation/runs/52xzpg3h
+  epoch   1/25 | train 4.8025 | val 3.2037 (ppl 24.62, tok-acc 53.89%) | 136.2s
+  epoch   2/25 | train 3.6294 | val 2.2057 (ppl 9.08, tok-acc 63.98%) | 134.6s
+  epoch   3/25 | train 2.8982 | val 1.4127 (ppl 4.11, tok-acc 73.06%) | 144.3s
+  epoch   4/25 | train 2.3754 | val 0.9411 (ppl 2.56, tok-acc 80.20%) | 149.4s
+  epoch   5/25 | train 2.0411 | val 0.6634 (ppl 1.94, tok-acc 85.75%) | 170.0s
+  epoch   6/25 | train 1.8402 | val 0.5059 (ppl 1.66, tok-acc 89.41%) | 160.9s
+  epoch   7/25 | train 1.7152 | val 0.4172 (ppl 1.52, tok-acc 91.30%) | 160.7s
+  epoch   8/25 | train 1.6347 | val 0.3575 (ppl 1.43, tok-acc 92.64%) | 154.0s
+  epoch   9/25 | train 1.5751 | val 0.3200 (ppl 1.38, tok-acc 93.57%) | 145.5s
+  epoch  10/25 | train 1.5315 | val 0.2894 (ppl 1.34, tok-acc 94.19%) | 144.6s
+  epoch  11/25 | train 1.4943 | val 0.2675 (ppl 1.31, tok-acc 94.80%) | 147.0s
+  epoch  12/25 | train 1.4659 | val 0.2487 (ppl 1.28, tok-acc 95.27%) | 140.6s
+  epoch  13/25 | train 1.4425 | val 0.2326 (ppl 1.26, tok-acc 95.62%) | 155.9s
+  epoch  14/25 | train 1.4220 | val 0.2210 (ppl 1.25, tok-acc 95.84%) | 141.6s
+  epoch  15/25 | train 1.4061 | val 0.2106 (ppl 1.23, tok-acc 96.12%) | 139.4s
+  epoch  16/25 | train 1.3923 | val 0.2028 (ppl 1.22, tok-acc 96.35%) | 137.3s
+  epoch  17/25 | train 1.3808 | val 0.1998 (ppl 1.22, tok-acc 96.40%) | 137.8s
+  epoch  18/25 | train 1.3705 | val 0.1942 (ppl 1.21, tok-acc 96.55%) | 138.8s
+  epoch  19/25 | train 1.3627 | val 0.1896 (ppl 1.21, tok-acc 96.65%) | 141.1s
+  epoch  20/25 | train 1.3565 | val 0.1871 (ppl 1.21, tok-acc 96.71%) | 143.0s
+  epoch  21/25 | train 1.3511 | val 0.1851 (ppl 1.20, tok-acc 96.75%) | 140.8s
+  epoch  22/25 | train 1.3470 | val 0.1839 (ppl 1.20, tok-acc 96.77%) | 140.9s
+  epoch  23/25 | train 1.3440 | val 0.1819 (ppl 1.20, tok-acc 96.81%) | 146.2s
+  epoch  24/25 | train 1.3417 | val 0.1812 (ppl 1.20, tok-acc 96.83%) | 150.0s
+  epoch  25/25 | train 1.3402 | val 0.1809 (ppl 1.20, tok-acc 96.86%) | 142.6s
+  [model] restored best checkpoint (epoch 25, val loss 0.1809)
+  [eval] teacher-forced test loss ...
+  [eval] greedy decoding ...
+    [gen] batch 1/150 (64 samples)
+    [gen] batch 11/150 (704 samples)
