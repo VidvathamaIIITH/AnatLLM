@@ -1,0 +1,76 @@
+_wandb:
+    value:
+        cli_version: 0.30.0
+        e:
+            kqn54kxgrgukkukgrh4wphvs103ibua1:
+                codePath: scripts\sync_wandb.py
+                codePathLocal: scripts\sync_wandb.py
+                cpu_count: 6
+                cpu_count_logical: 12
+                cudaVersion: "12.8"
+                disk:
+                    /:
+                        total: "323755511808"
+                        used: "279901614080"
+                executable: C:\Users\vidva\anlp_a2_work\.venv\Scripts\python.exe
+                git:
+                    commit: 4ae281f9b21f341df34af75f121c814112398b21
+                    remote: ssh://code.iiit.ac.in/advanced-nlp/m26-assignment2-vidvathama.babu.git
+                gpu: NVIDIA GeForce RTX 3050 Laptop GPU
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Ampere
+                      cudaCores: 2048
+                      memoryTotal: "4294967296"
+                      name: NVIDIA GeForce RTX 3050 Laptop GPU
+                      uuid: GPU-edb405dd-f1d2-37e6-cc8a-ff9bf6ceb706
+                host: Eve
+                memory:
+                    total: "16542154752"
+                os: Windows-10-10.0.26200-SP0
+                program: C:\Users\vidva\OneDrive - International Institute of Information Technology\Desktop\Course_Work_4-1\ANLP\Assignments\Assignment2\scripts\sync_wandb.py
+                python: CPython 3.11.9
+                root: C:\Users\vidva\OneDrive - International Institute of Information Technology\Desktop\Course_Work_4-1\ANLP\Assignments\Assignment2
+                startedAt: "2026-10-01T05:11:38.571157Z"
+                writerId: kqn54kxgrgukkukgrh4wphvs103ibua1
+        m:
+            - "1": tokens
+              "6":
+                - 3
+              "7": []
+            - "2": train/*
+              "5": 1
+              "6":
+                - 1
+              "7": []
+            - "2": eval/*
+              "5": 1
+              "6":
+                - 1
+              "7": []
+        python_version: 3.11.9
+        t:
+            "1":
+                - 1
+            "2":
+                - 1
+            "3":
+                - 2
+                - 7
+                - 13
+                - 15
+                - 16
+                - 61
+                - 62
+            "4": 3.11.9
+            "5": 0.30.0
+            "8":
+                - 3
+            "12": 0.30.0
+            "13": windows-amd64
+fraction:
+    value: 0.1
+lr:
+    value: 0.0024
+optimizer:
+    value: mars

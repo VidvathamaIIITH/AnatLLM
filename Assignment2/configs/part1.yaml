@@ -1,0 +1,56 @@
+# Part 1 - Mixture of Experts on vi/ja -> en translation.
+#
+# The five FFN ablations differ ONLY in `model.ffn_type` and the expert layout,
+# which src/part1/model.py:variant_config derives from `model.d_ff`.  Everything
+# below is shared by all five runs, so the comparison is like-for-like.
+
+seed: 1234
+device: null                 # null -> CUDA when available
+
+data:
+  vocab_size: 32000          # byte-level BPE shared by en / vi / ja
+  n_ctx: 256                 # covers >99.9% of (source + target) pairs
+
+model:
+  d_model: 384
+  n_layers: 6
+  n_heads: 6
+  d_ff: 1536                 # dense reference width (4 * d_model)
+  dropout: 0.0
+  tie_embeddings: true
+  rope_theta: 10000.0
+  norm_eps: 1.0e-5
+  init_std: 0.02
+  router_aux_coef: 0.01      # Switch-style load balancing
+  router_z_coef: 1.0e-3
+  router_noise_std: 0.0
+
+train:
+  token_budget: 30000000     # identical for every variant (~0.82 epochs)
+  micro_batch_tokens: 3072   # padded tokens per micro-batch (peak ~2.1 GiB)
+  grad_accum: 2              # -> ~6144 real tokens per optimizer step
+  max_seqs: 256
+  lr: 6.0e-4
+  min_lr_ratio: 0.1
+  warmup_steps: 200
+  weight_decay: 0.1
+  betas: [0.9, 0.95]
+  grad_clip: 1.0
+  log_every: 50
+  eval_every: 500
+  eval_examples: 8000        # validation subset used for the in-training curve
+  eval_micro_tokens: 2048
+
+eval:
+  ppl_examples: null         # null -> the entire test split
+  bleu_examples: 2000        # sampled test pairs decoded for BLEU
+  usage_examples: 8000       # examples used for the expert-usage heatmaps
+  max_new_tokens: 128
+  beam_width: 4
+  gen_batch_size: 48
+
+# Experiment tracking. Set enabled: false (or WANDB_MODE=disabled) to log locally only.
+wandb:
+  enabled: true
+  project: anlp-a2
+  entity: null

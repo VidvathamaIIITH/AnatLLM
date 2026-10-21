@@ -1,0 +1,42 @@
+# Part 3 - decoding strategies on ROCStories with EleutherAI/Pythia-160M.
+#
+# The prompt is the story's first sentence; the reference is sentences 2-5.
+# Every strategy decodes the same 1000 stories with the same seed.
+
+seed: 1234
+device: null
+fp16: true                   # Pythia-160M in fp16 on the GPU; fp32 on CPU
+
+data:
+  split: test
+  n_examples: 1000           # assignment minimum is 1000
+
+generate:
+  max_new_tokens: 80         # references are ~55 tokens; leaves room to run on
+  truncate_sentences: 4      # score the first 4 sentences, as in the reference
+  stop_at_eos: true
+  batch_size: 32             # divided by the beam width for beam search
+  length_penalty: 1.0        # beam score = sum logprob / length ** penalty
+
+  greedy: true
+  beam_widths: [1, 2, 4]
+  top_k: [10, 40, 100]
+  top_p: [0.7, 0.9, 0.95]
+  temperatures: [1.0]        # add e.g. 0.7 to sweep temperature as well
+
+eval:
+  ppl_batch_size: 8
+
+# Timing study: beam search is re-run on this many examples at each width to
+# measure the wall-clock cost as a function of the beam width.
+timing:
+  n_examples: 200
+  beam_widths: [1, 2, 4, 8]
+  repeats: 3
+  batch_size: 16             # K=8 already means 128 rows through the model
+
+# Experiment tracking. Set enabled: false (or WANDB_MODE=disabled) to log locally only.
+wandb:
+  enabled: true
+  project: anlp-a2
+  entity: null

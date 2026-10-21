@@ -1,0 +1,49 @@
+# Python / uv
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Model files & large artifacts (repo has a strict quota)
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.ckpt
+*.onnx
+*.gguf
+*.npy
+*.npz
+*.arrow
+*.model
+
+# Local working dirs (checkpoints, tokenizers, caches, binarised data)
+work/
+runs/
+checkpoints/
+data/
+hf_cache/
+wandb/
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# LaTeX build artefacts (report.pdf itself IS committed)
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg

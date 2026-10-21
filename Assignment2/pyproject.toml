@@ -1,0 +1,48 @@
+[project]
+name = "anlp-assignment-2"
+version = "0.1.0"
+description = "ANLP Monsoon 2026 Assignment 2 - Mixture of Experts, Optimizers, Decoding Strategies"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "torch>=2.8.0",
+    "transformers>=4.44.0",
+    "datasets>=3.0.0",
+    "tokenizers>=0.20.0",
+    "huggingface-hub>=0.26.0",
+    "safetensors>=0.4.5",
+    "sacrebleu>=2.4.3",
+    "numpy>=1.26",
+    "pandas>=2.2",
+    "matplotlib>=3.9",
+    "seaborn>=0.13",
+    "pyyaml>=6.0",
+    "tqdm>=4.66",
+    "wandb>=0.29.0",
+]
+
+# `uv sync` installs the dev group by default, so `main.py test` works out of the box.
+[dependency-groups]
+dev = ["pytest>=8.0"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"
+filterwarnings = [
+    "error::RuntimeWarning",
+]
+
+# CUDA 12.6 wheels on Linux / Windows; macOS falls back to the PyPI build (CPU / MPS).
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cu126", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true

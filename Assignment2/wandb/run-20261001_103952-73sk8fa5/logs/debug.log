@@ -1,0 +1,20 @@
+2026-10-01 10:39:52,812 INFO    MainThread:27260 [wandb_init.py:setup_run_log_directory():739] Logging user logs to C:\Users\vidva\OneDrive - International Institute of Information Technology\Desktop\Course_Work_4-1\ANLP\Assignments\Assignment2\wandb\run-20261001_103952-73sk8fa5\logs\debug.log
+2026-10-01 10:39:52,813 INFO    MainThread:27260 [wandb_init.py:setup_run_log_directory():740] Logging internal logs to C:\Users\vidva\OneDrive - International Institute of Information Technology\Desktop\Course_Work_4-1\ANLP\Assignments\Assignment2\wandb\run-20261001_103952-73sk8fa5\logs\debug-internal.log
+2026-10-01 10:39:52,813 INFO    MainThread:27260 [wandb_init.py:init():783] calling init triggers
+2026-10-01 10:39:52,813 INFO    MainThread:27260 [wandb_init.py:init():788] wandb.init called with sweep_config: {}
+config: {'optimizer': 'adamw', 'category': '1. AdamW', 'hyperparams': {'weight_decay': 0.1, 'eps': 1e-08, 'lr': 0.0012, 'betas': [0.9, 0.95]}, 'params': 16765824, 'fraction': 1.0, '_wandb': {}}
+2026-10-01 10:39:52,814 INFO    MainThread:27260 [wandb_init.py:init():831] starting backend
+2026-10-01 10:39:52,814 INFO    MainThread:27260 [wandb_init.py:init():846] sending inform_init request
+2026-10-01 10:39:54,017 INFO    MainThread:27260 [wandb_init.py:init():851] backend started and connected
+2026-10-01 10:39:54,019 INFO    MainThread:27260 [wandb_init.py:init():921] updated telemetry
+2026-10-01 10:39:54,195 INFO    MainThread:27260 [wandb_init.py:init():944] communicating run to backend with 90.0 second timeout
+2026-10-01 10:39:55,351 INFO    MainThread:27260 [wandb_init.py:init():981] starting run threads in backend
+2026-10-01 10:39:55,602 INFO    MainThread:27260 [wandb_run.py:_console_start():2531] atexit reg
+2026-10-01 10:39:55,603 INFO    MainThread:27260 [wandb_run.py:_redirect():2381] redirect: wrap_raw
+2026-10-01 10:39:55,603 INFO    MainThread:27260 [wandb_run.py:_redirect():2450] Wrapping output streams.
+2026-10-01 10:39:55,604 INFO    MainThread:27260 [wandb_run.py:_redirect():2473] Redirects installed.
+2026-10-01 10:39:55,606 INFO    MainThread:27260 [wandb_init.py:init():1019] run started, returning control to user process
+2026-10-01 10:39:55,687 INFO    MainThread:27260 [wandb_run.py:_finish():2303] finishing run vidvathama-babu-iiit-hyderabad/anlp-a2/73sk8fa5
+2026-10-01 10:39:55,688 INFO    MainThread:27260 [wandb_run.py:_atexit_cleanup():2498] got exitcode: 0
+2026-10-01 10:39:55,689 INFO    MainThread:27260 [wandb_run.py:_restore():2480] restore
+2026-10-01 10:39:55,689 INFO    MainThread:27260 [wandb_run.py:_restore():2486] restore done

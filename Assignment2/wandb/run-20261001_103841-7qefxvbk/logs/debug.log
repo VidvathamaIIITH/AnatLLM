@@ -1,0 +1,24 @@
+2026-10-01 10:38:41,441 INFO    MainThread:7360 [wandb_setup.py:_flush():81] Current SDK version is 0.30.0
+2026-10-01 10:38:41,441 INFO    MainThread:7360 [wandb_setup.py:_flush():81] Configure stats pid to 7360
+2026-10-01 10:38:41,441 INFO    MainThread:7360 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2026-10-01 10:38:41,441 INFO    MainThread:7360 [wandb_init.py:setup_run_log_directory():739] Logging user logs to C:\Users\vidva\OneDrive - International Institute of Information Technology\Desktop\Course_Work_4-1\ANLP\Assignments\Assignment2\wandb\run-20261001_103841-7qefxvbk\logs\debug.log
+2026-10-01 10:38:41,442 INFO    MainThread:7360 [wandb_init.py:setup_run_log_directory():740] Logging internal logs to C:\Users\vidva\OneDrive - International Institute of Information Technology\Desktop\Course_Work_4-1\ANLP\Assignments\Assignment2\wandb\run-20261001_103841-7qefxvbk\logs\debug-internal.log
+2026-10-01 10:38:41,443 INFO    MainThread:7360 [wandb_init.py:init():783] calling init triggers
+2026-10-01 10:38:41,443 INFO    MainThread:7360 [wandb_init.py:init():788] wandb.init called with sweep_config: {}
+config: {'seed': 1234, 'device': None, 'fp16': True, 'data': {'split': 'test', 'n_examples': 1000}, 'generate': {'max_new_tokens': 80, 'truncate_sentences': 4, 'stop_at_eos': True, 'batch_size': 32, 'length_penalty': 1.0, 'greedy': True, 'beam_widths': [1, 2, 4], 'top_k': [10, 40, 100], 'top_p': [0.7, 0.9, 0.95], 'temperatures': [1.0]}, 'eval': {'ppl_batch_size': 8}, 'timing': {'n_examples': 200, 'beam_widths': [1, 2, 4, 8], 'repeats': 3, 'batch_size': 16}, 'wandb': {'enabled': True, 'project': 'anlp-a2', 'entity': None}, '_wandb': {}}
+2026-10-01 10:38:41,443 INFO    MainThread:7360 [wandb_init.py:init():831] starting backend
+2026-10-01 10:38:41,443 INFO    MainThread:7360 [wandb_init.py:init():846] sending inform_init request
+2026-10-01 10:38:41,496 INFO    MainThread:7360 [wandb_init.py:init():851] backend started and connected
+2026-10-01 10:38:41,498 INFO    MainThread:7360 [wandb_init.py:init():921] updated telemetry
+2026-10-01 10:38:41,654 INFO    MainThread:7360 [wandb_init.py:init():944] communicating run to backend with 90.0 second timeout
+2026-10-01 10:38:43,001 INFO    MainThread:7360 [wandb_init.py:init():981] starting run threads in backend
+2026-10-01 10:38:43,299 INFO    MainThread:7360 [wandb_run.py:_console_start():2531] atexit reg
+2026-10-01 10:38:43,300 INFO    MainThread:7360 [wandb_run.py:_redirect():2381] redirect: wrap_raw
+2026-10-01 10:38:43,300 INFO    MainThread:7360 [wandb_run.py:_redirect():2450] Wrapping output streams.
+2026-10-01 10:38:43,301 INFO    MainThread:7360 [wandb_run.py:_redirect():2473] Redirects installed.
+2026-10-01 10:38:43,385 INFO    MainThread:7360 [wandb_init.py:init():1019] run started, returning control to user process
+2026-10-01 11:04:32,136 INFO    MainThread:7360 [wandb_run.py:_finish():2303] finishing run vidvathama-babu-iiit-hyderabad/anlp-a2/7qefxvbk
+2026-10-01 11:04:32,137 INFO    MainThread:7360 [wandb_run.py:_atexit_cleanup():2498] got exitcode: 0
+2026-10-01 11:04:32,138 INFO    MainThread:7360 [wandb_run.py:_restore():2480] restore
+2026-10-01 11:04:32,138 INFO    MainThread:7360 [wandb_run.py:_restore():2486] restore done
+2026-10-01 11:04:46,384 INFO    MainThread:7360 [wandb_run.py:_footer_sync_info():3901] logging synced files

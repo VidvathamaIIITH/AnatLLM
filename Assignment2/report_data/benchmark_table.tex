@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\caption{Controlled optimizer overhead: 3 interleaved rounds of 40 timed steps each, best round reported. The round-to-round spread is shown because it is the same size as most of the between-optimizer differences.}
+\label{tab:p2-bench}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrrrl}
+\toprule
+Optimizer & tok/s & ms/step & vs AdamW & per-round tok/s \\
+\midrule
+AdamW & 34,944 & 351.6 & 1.00$\times$ & {\scriptsize 34,944, 31,788, 31,677} \\
+MARS & 31,351 & 391.9 & 1.11$\times$ & {\scriptsize 31,351, 30,326, 30,035} \\
+Lion & 32,671 & 376.1 & 1.07$\times$ & {\scriptsize 32,671, 32,255, 31,260} \\
+Muon & 27,518 & 446.5 & 1.27$\times$ & {\scriptsize 25,775, 26,663, 27,518} \\
+Sophia-G & 31,392 & 391.4 & 1.11$\times$ & {\scriptsize 31,392, 29,957, 30,403} \\
+\bottomrule
+\end{tabular}}
+\end{table}

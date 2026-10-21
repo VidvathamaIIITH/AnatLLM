@@ -1,0 +1,154 @@
+_wandb:
+    value:
+        cli_version: 0.30.0
+        e:
+            2vh314ftqhcmxqcne395540rs9qpiu0n:
+                codePath: scripts\sync_wandb.py
+                codePathLocal: scripts\sync_wandb.py
+                cpu_count: 6
+                cpu_count_logical: 12
+                cudaVersion: "12.8"
+                disk:
+                    /:
+                        total: "323755511808"
+                        used: "273869664256"
+                executable: C:\Users\vidva\anlp_a2_work\.venv\Scripts\python.exe
+                git:
+                    commit: 445d9a2421b230c2b33dde7a7c6ba54618f1f2c9
+                    remote: ssh://code.iiit.ac.in/advanced-nlp/m26-assignment2-vidvathama.babu.git
+                gpu: NVIDIA GeForce RTX 3050 Laptop GPU
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Ampere
+                      cudaCores: 2048
+                      memoryTotal: "4294967296"
+                      name: NVIDIA GeForce RTX 3050 Laptop GPU
+                      uuid: GPU-edb405dd-f1d2-37e6-cc8a-ff9bf6ceb706
+                host: Eve
+                memory:
+                    total: "16542154752"
+                os: Windows-10-10.0.26200-SP0
+                program: C:\Users\vidva\OneDrive - International Institute of Information Technology\Desktop\Course_Work_4-1\ANLP\Assignments\Assignment2\scripts\sync_wandb.py
+                python: CPython 3.11.9
+                root: C:\Users\vidva\OneDrive - International Institute of Information Technology\Desktop\Course_Work_4-1\ANLP\Assignments\Assignment2
+                startedAt: "2026-10-01T05:09:46.608609Z"
+                writerId: 2vh314ftqhcmxqcne395540rs9qpiu0n
+        m:
+            - "1": tokens
+              "6":
+                - 3
+              "7": []
+            - "2": train/*
+              "5": 1
+              "6":
+                - 1
+              "7": []
+            - "2": eval/*
+              "5": 1
+              "6":
+                - 1
+              "7": []
+        python_version: 3.11.9
+        t:
+            "1":
+                - 1
+            "2":
+                - 1
+            "3":
+                - 2
+                - 7
+                - 13
+                - 15
+                - 16
+                - 61
+                - 62
+            "4": 3.11.9
+            "5": 0.30.0
+            "8":
+                - 3
+            "12": 0.30.0
+            "13": windows-amd64
+config:
+    value:
+        data:
+            n_ctx: 256
+            vocab_size: 32000
+        device: null
+        eval:
+            beam_width: 4
+            bleu_examples: 2000
+            gen_batch_size: 48
+            max_new_tokens: 128
+            ppl_examples: null
+            usage_examples: 8000
+        model:
+            d_ff: 1536
+            d_model: 384
+            dropout: 0
+            init_std: 0.02
+            n_heads: 6
+            n_layers: 6
+            norm_eps: 1e-05
+            rope_theta: 10000
+            router_aux_coef: 0.01
+            router_noise_std: 0
+            router_z_coef: 0.001
+            tie_embeddings: true
+        seed: 1234
+        train:
+            betas:
+                - 0.9
+                - 0.95
+            eval_every: 500
+            eval_examples: 8000
+            eval_micro_tokens: 2048
+            grad_accum: 2
+            grad_clip: 1
+            log_every: 50
+            lr: 0.0006
+            max_seqs: 256
+            micro_batch_tokens: 3072
+            min_lr_ratio: 0.1
+            token_budget: 30000000
+            warmup_steps: 200
+            weight_decay: 0.1
+model_config:
+    value:
+        d_ff: 1536
+        d_ff_expert: 768
+        d_model: 384
+        dropout: 0
+        ffn_type: moe
+        init_std: 0.02
+        n_active_experts: 2
+        n_ctx: 256
+        n_heads: 6
+        n_layers: 6
+        n_routed_experts: 4
+        n_shared_experts: 0
+        norm_eps: 1e-05
+        rope_theta: 10000
+        router_aux_coef: 0.01
+        router_noise_std: 0
+        router_z_coef: 0.001
+        tie_embeddings: true
+        vocab_size: 32000
+param_budget:
+    value:
+        active: 22919040
+        attention: 3538944
+        embedding: 12288000
+        ffn_active: 7087104
+        ffn_total: 14164992
+        norms: 4992
+        total: 29996928
+params_active:
+    value: 22919040
+params_total:
+    value: 29996928
+planned_tokens:
+    value: 30000842
+total_steps:
+    value: 4937
+variant:
+    value: moe_4e_top2_wide

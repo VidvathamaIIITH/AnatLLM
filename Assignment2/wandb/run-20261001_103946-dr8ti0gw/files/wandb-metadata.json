@@ -1,0 +1,39 @@
+{
+  "os":  "Windows-10-10.0.26200-SP0",
+  "python":  "CPython 3.11.9",
+  "startedAt":  "2026-10-01T05:09:46.608609Z",
+  "program":  "C:\\Users\\vidva\\OneDrive - International Institute of Information Technology\\Desktop\\Course_Work_4-1\\ANLP\\Assignments\\Assignment2\\scripts\\sync_wandb.py",
+  "codePath":  "scripts\\sync_wandb.py",
+  "codePathLocal":  "scripts\\sync_wandb.py",
+  "git":  {
+    "remote":  "ssh://code.iiit.ac.in/advanced-nlp/m26-assignment2-vidvathama.babu.git",
+    "commit":  "445d9a2421b230c2b33dde7a7c6ba54618f1f2c9"
+  },
+  "root":  "C:\\Users\\vidva\\OneDrive - International Institute of Information Technology\\Desktop\\Course_Work_4-1\\ANLP\\Assignments\\Assignment2",
+  "host":  "Eve",
+  "executable":  "C:\\Users\\vidva\\anlp_a2_work\\.venv\\Scripts\\python.exe",
+  "cpu_count":  6,
+  "cpu_count_logical":  12,
+  "gpu":  "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "323755511808",
+      "used":  "273869664256"
+    }
+  },
+  "memory":  {
+    "total":  "16542154752"
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA GeForce RTX 3050 Laptop GPU",
+      "memoryTotal":  "4294967296",
+      "cudaCores":  2048,
+      "architecture":  "Ampere",
+      "uuid":  "GPU-edb405dd-f1d2-37e6-cc8a-ff9bf6ceb706"
+    }
+  ],
+  "cudaVersion":  "12.8",
+  "writerId":  "2vh314ftqhcmxqcne395540rs9qpiu0n"
+}

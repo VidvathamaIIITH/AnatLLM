@@ -1,0 +1,16 @@
+{
+  "os":  "Windows-10-10.0.26200-SP0",
+  "python":  "CPython 3.11.9",
+  "startedAt":  "2026-10-01T05:12:02.043226Z",
+  "program":  "C:\\Users\\vidva\\OneDrive - International Institute of Information Technology\\Desktop\\Course_Work_4-1\\ANLP\\Assignments\\Assignment2\\scripts\\sync_wandb.py",
+  "codePath":  "scripts\\sync_wandb.py",
+  "codePathLocal":  "scripts\\sync_wandb.py",
+  "git":  {
+    "remote":  "ssh://code.iiit.ac.in/advanced-nlp/m26-assignment2-vidvathama.babu.git",
+    "commit":  "4ae281f9b21f341df34af75f121c814112398b21"
+  },
+  "root":  "C:\\Users\\vidva\\OneDrive - International Institute of Information Technology\\Desktop\\Course_Work_4-1\\ANLP\\Assignments\\Assignment2",
+  "host":  "Eve",
+  "executable":  "C:\\Users\\vidva\\anlp_a2_work\\.venv\\Scripts\\python.exe",
+  "writerId":  "ot5txcf5ys0gtoacg94huxkb4sch5h5c"
+}

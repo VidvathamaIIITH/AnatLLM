@@ -1,0 +1,111 @@
+# Part 2 - Optimizer comparison on browndw/human-ai-parallel-corpus.
+#
+# The model is exactly the dense configuration of Part 1 (config 1); only the
+# vocabulary differs, because this corpus is English-only.  Every optimizer sees
+# the same data in the same order for the same number of tokens, so the curves
+# in the report differ only by the update rule.
+
+seed: 1234
+device: null
+
+data:
+  vocab_size: 16000          # English-only byte-level BPE
+  n_ctx: 256
+
+model:                       # identical to configs/part1.yaml -> variant "dense"
+  d_model: 384
+  n_layers: 6
+  n_heads: 6
+  d_ff: 1536
+  dropout: 0.0
+  tie_embeddings: true
+  rope_theta: 10000.0
+  norm_eps: 1.0e-5
+  init_std: 0.02
+
+train:
+  micro_batch_blocks: 12     # 12 * 256 = 3072 tokens per micro-batch
+  grad_accum: 4              # -> 12288 tokens per optimizer step
+  warmup_steps: 150
+  min_lr_ratio: 0.1
+  grad_clip: 1.0
+  log_every: 50
+  # The budget is fixed at exactly one pass over the training split (1x dataset);
+  # validation loss and test BLEU are recorded every 0.1x.
+
+eval:
+  val_blocks: 1200           # validation blocks scored at each checkpoint
+  batch_blocks: 8
+  bleu_prompts: 250
+  prompt_tokens: 128
+  gen_tokens: 48
+  gen_batch_size: 25
+
+optim:
+  common:
+    weight_decay: 0.1
+    eps: 1.0e-8
+
+  per_optimizer:
+    # 1. AdamW - the baseline.
+    adamw:
+      lr: 1.2e-3
+      betas: [0.9, 0.95]
+
+    # 2. MARS - variance-reduced AdamW variant.
+    mars:
+      lr: 1.2e-3
+      betas: [0.95, 0.99]
+      gamma: 0.025
+      mars_max_grad_norm: 1.0
+
+    # 3. Lion - memory-efficient; the sign update has unit magnitude, so the
+    #    learning rate is ~6x smaller and the decay correspondingly larger.
+    lion:
+      lr: 2.0e-4
+      betas: [0.9, 0.99]
+      weight_decay: 0.6
+
+    # 4. Muon - matrix-based; hidden matrices use the orthogonalised update,
+    #    embeddings / head / 1-D parameters fall back to AdamW.
+    muon:
+      lr: 0.04
+      adamw_lr: 6.0e-4
+      adamw_betas: [0.9, 0.95]
+      momentum: 0.95
+      nesterov: true
+      ns_steps: 5
+
+    # 5. Sophia-G - Hessian-based (bonus); the curvature estimate costs one
+    #    extra forward/backward every `hessian_every` steps.
+    sophia:
+      lr: 3.0e-4
+      betas: [0.965, 0.99]
+      rho: 0.04
+      eps: 1.0e-15
+      hessian_every: 10
+      hessian_blocks: 4     # blocks used for the curvature estimate (memory bound)
+
+# Learning rates searched by src/part2/sweep.py; each `lr` above is the winner of
+# that sweep at 0.1x the dataset (what the released checkpoints were trained with).
+# `main.py part2 all` re-runs the sweep and adopts its winners automatically.
+#
+# Each grid is a 5-point geometric ladder (factor 2) chosen so the optimum falls
+# *inside* the range rather than on an endpoint.  A first 3-point pass put four
+# of the five optimizers on their top endpoint and Sophia on its bottom one,
+# which would have handicapped each optimizer by a different, unknown amount and
+# so corrupted exactly the comparison this section is meant to make.
+sweep:
+  fraction: 0.1
+  grid:
+    adamw:  [3.0e-4, 6.0e-4, 1.2e-3, 2.4e-3, 4.8e-3]
+    mars:   [3.0e-4, 6.0e-4, 1.2e-3, 2.4e-3, 4.8e-3]
+    lion:   [5.0e-5, 1.0e-4, 2.0e-4, 4.0e-4, 8.0e-4]
+    muon:   [0.01, 0.02, 0.04, 0.08, 0.16]
+    sophia: [7.5e-5, 1.5e-4, 3.0e-4, 6.0e-4, 1.2e-3]
+
+# Experiment tracking. Set enabled: false (or WANDB_MODE=disabled) to log locally only.
+wandb:
+  enabled: true
+  project: anlp-a2
+  entity: null

@@ -1,0 +1,20 @@
+2026-10-01 10:40:53,219 INFO    MainThread:27260 [wandb_init.py:setup_run_log_directory():739] Logging user logs to C:\Users\vidva\OneDrive - International Institute of Information Technology\Desktop\Course_Work_4-1\ANLP\Assignments\Assignment2\wandb\run-20261001_104053-u0buzqf5\logs\debug.log
+2026-10-01 10:40:53,220 INFO    MainThread:27260 [wandb_init.py:setup_run_log_directory():740] Logging internal logs to C:\Users\vidva\OneDrive - International Institute of Information Technology\Desktop\Course_Work_4-1\ANLP\Assignments\Assignment2\wandb\run-20261001_104053-u0buzqf5\logs\debug-internal.log
+2026-10-01 10:40:53,220 INFO    MainThread:27260 [wandb_init.py:init():783] calling init triggers
+2026-10-01 10:40:53,220 INFO    MainThread:27260 [wandb_init.py:init():788] wandb.init called with sweep_config: {}
+config: {'optimizer': 'lion', 'lr': 5e-05, 'fraction': 0.1, '_wandb': {}}
+2026-10-01 10:40:53,220 INFO    MainThread:27260 [wandb_init.py:init():831] starting backend
+2026-10-01 10:40:53,220 INFO    MainThread:27260 [wandb_init.py:init():846] sending inform_init request
+2026-10-01 10:40:54,706 INFO    MainThread:27260 [wandb_init.py:init():851] backend started and connected
+2026-10-01 10:40:54,708 INFO    MainThread:27260 [wandb_init.py:init():921] updated telemetry
+2026-10-01 10:40:54,858 INFO    MainThread:27260 [wandb_init.py:init():944] communicating run to backend with 90.0 second timeout
+2026-10-01 10:40:56,264 INFO    MainThread:27260 [wandb_init.py:init():981] starting run threads in backend
+2026-10-01 10:40:56,500 INFO    MainThread:27260 [wandb_run.py:_console_start():2531] atexit reg
+2026-10-01 10:40:56,501 INFO    MainThread:27260 [wandb_run.py:_redirect():2381] redirect: wrap_raw
+2026-10-01 10:40:56,501 INFO    MainThread:27260 [wandb_run.py:_redirect():2450] Wrapping output streams.
+2026-10-01 10:40:56,501 INFO    MainThread:27260 [wandb_run.py:_redirect():2473] Redirects installed.
+2026-10-01 10:40:56,505 INFO    MainThread:27260 [wandb_init.py:init():1019] run started, returning control to user process
+2026-10-01 10:40:56,518 INFO    MainThread:27260 [wandb_run.py:_finish():2303] finishing run vidvathama-babu-iiit-hyderabad/anlp-a2/u0buzqf5
+2026-10-01 10:40:56,519 INFO    MainThread:27260 [wandb_run.py:_atexit_cleanup():2498] got exitcode: 0
+2026-10-01 10:40:56,520 INFO    MainThread:27260 [wandb_run.py:_restore():2480] restore
+2026-10-01 10:40:56,520 INFO    MainThread:27260 [wandb_run.py:_restore():2486] restore done
